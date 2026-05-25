@@ -5,40 +5,44 @@
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+import React from 'react';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { AgencyCard } from './src/components/AgencyCard/AgencyCard';
+import { ScrollView, StyleSheet } from 'react-native';
 
+
+function App() { 
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+    <SafeAreaProvider>      
+      <SafeAreaView style={styles.safeArea}>     
+        <ScrollView 
+          style={styles.scrollView} 
+          contentContainerStyle={styles.scrollContent}>
+          <AgencyCard />
+          <AgencyCard />
+          <AgencyCard />
+        </ScrollView>
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 }
 
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
+export const styles = StyleSheet.create({
+ 
+  safeArea: {
     flex: 1,
+    backgroundColor: '#fff', 
+  },
+  
+  scrollView: {
+    flex: 1,
+  },
+  
+  scrollContent: {
+    flexDirection: 'column',
+    gap: 16, 
+    paddingHorizontal: 16, 
   },
 });
 
