@@ -98,4 +98,4 @@ To learn more about React Native, take a look at the following resources:
 
 # [Bezkrovnyi]\_cross_assignment_3 - component added:
 
-![Agency_card component](C:\Users\Surki\OneDrive\Изображения\Screenshots\agency_card_component.jpg)
+![Agency_card component](./src/img/agency_card_component.jpg)
