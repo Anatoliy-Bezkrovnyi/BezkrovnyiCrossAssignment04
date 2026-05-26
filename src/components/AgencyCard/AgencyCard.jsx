@@ -1,11 +1,11 @@
 import { View, useWindowDimensions } from "react-native";
 import createStyles from "./AgencyCard.styles";
 import { AgencyRating } from "../AgencyRating/AgencyRating";
-import { AgencyAddress } from "../AgencyAddress/AgencyAddress";
-import { BackButton } from "../BackButton/BackButton";
-import { AgencyImage } from "../AgencyImage/AgencyImage";
-import { AgencyTitle } from "../AgencyTitle/AgencyTitle";  
-import { AgencyServicesList } from "../AgencyServicesList/AgencyServicesList";
+import { AgencyAddress } from "./AgencyAddress/AgencyAddress";
+import { BackButton } from "./BackButton/BackButton";
+import { AgencyImage } from "./AgencyImage/AgencyImage";
+import { AgencyTitle } from "./AgencyTitle/AgencyTitle";  
+import { AgencyServicesList } from "./AgencyServicesList/AgencyServicesList";
 import { CustomButton } from "../CustomButton/CustomButton";
  
 
