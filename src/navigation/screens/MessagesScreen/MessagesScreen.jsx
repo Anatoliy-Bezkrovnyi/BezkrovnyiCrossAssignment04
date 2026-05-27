@@ -1,9 +1,10 @@
 import { View, Text } from 'react-native';
+import styles from './MessagesScreen.styles';
 
 const MessagesScreen = () => {
   return (
-    <View>
-      <Text>Messages Screen</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>Messages Screen</Text>
     </View>
   );
 };
