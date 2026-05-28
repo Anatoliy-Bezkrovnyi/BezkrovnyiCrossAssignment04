@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 import styles from "./AgencyRating.styles";
-import { RatingIcon } from "../RatingIcon/RatingIcon";
+import { RatingIcon } from "../../RatingIcon/RatingIcon";
 
 
 export const AgencyRating = ({rating}) => {

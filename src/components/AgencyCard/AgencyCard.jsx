@@ -1,6 +1,6 @@
 import { View, useWindowDimensions } from "react-native";
 import createStyles from "./AgencyCard.styles";
-import { AgencyRating } from "../AgencyRating/AgencyRating";
+import { AgencyRating } from "./AgencyRating/AgencyRating";
 import { AgencyAddress } from "./AgencyAddress/AgencyAddress";
 import { BackButton } from "./BackButton/BackButton";
 import { AgencyImage } from "./AgencyImage/AgencyImage";
@@ -11,25 +11,46 @@ import { CustomButton } from "../CustomButton/CustomButton";
 
 
 
-export const AgencyCard = () => {
+export const AgencyCard = ({ agency, onPress, onBackPress }) => {
+  const { width, height } = useWindowDimensions();  
+  const styles = createStyles(width, height);
 
-    const { width, height } = useWindowDimensions();  
-    const styles = createStyles(width, height);
+  // Перевірка на випадок, якщо дані випадково не передали
+  if (!agency) return null;
 
-    return <View style={styles.card}>
-        <BackButton title="Назад" onPress={() => {}}/>
-        <View style={styles.summary}>
-            <AgencyImage source={require('../../img/Egyptian_God_Anubis.webp')} />
-            <View style={styles.agencySummary}>
-                <View style={styles.agencyTitle}>
-                    <AgencyTitle title="Анубіс" />
-                    <AgencyRating rating="4.5" />
-                </View>
-                <AgencyAddress region="Київська область" district="Бучанський район" town="м. Вишневе" street="вул. Лесі Українки 72а" />
-            </View>        
-        </View>
-        <AgencyServicesList description="Підбір послуг згідно наявного бюджету замовника. Оформлення всіх необхідних документів. 
-                Транспортування з закордону. Оформлення місця поховання. Прибирання, догляд за місцем поховання, підтримання цілосності об’єктів "/>
-        <CustomButton title="Зробити замовлення" onPress={() => {}}/>   
-        </View>;
+  return (
+    <View style={styles.card}>
+      {/* Кнопка назад тепер використовує передану функцію */}
+      <BackButton title="Назад" onPress={onBackPress} />
+      
+      <View style={styles.summary}>
+        {/* Картинку беремо динамічно з об'єкта агенції */}
+        <AgencyImage source={agency.image} />
+        
+        <View style={styles.agencySummary}>
+          <View style={styles.agencyTitle}>
+            {/* Текст заголовка та рейтинг беремо з пропсів */}
+            <AgencyTitle title={agency.title} />
+            <AgencyRating rating={agency.rating.toString()} />
+          </View>
+          
+          {/* Передаємо розгорнутий об'єкт адреси через деструктуризацію */}
+          <AgencyAddress 
+            region={agency.address.region} 
+            district={agency.address.district} 
+            town={agency.address.town} 
+            street={agency.address.street} 
+          />
+        </View>        
+      </View>
+      
+      {/* Опис послуг теж динамічний */}
+      <AgencyServicesList description={agency.description} />
+      
+      {/* Кнопка замовлення викликає функцію onPress */}
+      <CustomButton title="Зробити замовлення" onPress={onPress} />   
+    </View>
+  );
 };
+
+export default AgencyCard;
